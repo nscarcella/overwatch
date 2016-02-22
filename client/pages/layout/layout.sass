@@ -1,0 +1,39 @@
+@import "../../commons"
+
+$header-height: 60px
+$logo-height: $header-height * 1.5
+
+.layout
+	header
+		background-color: $primary-color
+		height: $header-height
+		display: flex
+		align-items: center
+		position: relative
+		z-index: 9999
+
+		img.logo
+			float: left
+			background-color: $secondary-color
+			width: $logo-height
+			height: $logo-height
+			border-radius: $logo-height / 2
+			border-style: solid
+			border-width: thick
+			border-color: $primary-color
+			margin-left: -3px
+			margin-top: 28px
+
+		h1
+			float: left
+			color:	$secondary-color
+			margin: 0 auto 0 0
+			font-family: monospace
+			font-size: 48px
+			font-weight: bold
+
+		.userLogin
+			margin-right: 5px
+
+	.container
+		margin-top: 20px

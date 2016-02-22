@@ -1,0 +1,17 @@
+@import 'commons'
+
+.btn-primary
+	color: $secondary-color
+	background-color: $primary-color
+	border-color: darken($primary-color, 15%)
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary
+	background: darken($primary-color, 10%)
+
+$icons: (delete: '\f014', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a')
+
+@each $name, $icon in $icons
+	i.#{$name}:before
+		content: '#{$icon}'
+		font-family: $font-icon
+		font-style: normal

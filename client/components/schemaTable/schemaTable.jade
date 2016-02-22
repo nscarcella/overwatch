@@ -1,0 +1,7 @@
+template(name='schemaTable')
+	.schemaTable
+		+reactiveTable(settings=innerTableSettings)
+
+template(name='actionsCell')
+	each actions
+		i(class='action #{this}' action='#{this}' title='#{this}')
