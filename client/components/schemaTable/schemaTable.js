@@ -5,10 +5,10 @@ Template.schemaTable.helpers({
 		const collectionSchema = this.settings.collection._c2._simpleSchema
 		const listableFields = collectionSchema.objectKeys().filter(key => collectionSchema._schema[key].listable)
 
-		return {
+		return Object.assign({}, this.settings, {
 			collection: this.settings.collection.find({}, {transform: doc => this.settings.collection._transform(Object.assign(doc, {actions: this.settings.actions})) }),
-			fields: [...listableFields, { key: 'actions', 'label': "Actions", tmpl: Template.actionsCell} ]
-		}
+			fields: [...listableFields, { 'label': "Actions", tmpl: Template.actionsCell} ]
+		})
 	}
 })
 

@@ -1,1 +1,30 @@
+@import '../../commons'
+
 .subjects
+
+	.header
+		margin-bottom: 22px
+		height: 100px
+		border-bottom: solid #888 1px
+
+		h1
+			float: left
+
+		.actions
+			float: right
+			text-align: center
+
+			.action
+				font-size: 50px
+				color: $primary-color
+				&:hover
+					color: $tertiary-color
+
+			.action[title]:after
+				content: attr(title)
+				font-size: 13px
+				margin-top: -15px
+				display: block
+
+	.content
+		float: left

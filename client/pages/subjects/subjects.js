@@ -1,6 +1,7 @@
 Template.subjects.helpers({
 	tableSettings : () => ({
 		collection: Subjects,
+		rowsPerPage: 5,
 		actions: ['delete']
 	})
 })

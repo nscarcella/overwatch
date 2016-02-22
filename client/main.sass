@@ -3,12 +3,12 @@
 .btn-primary
 	color: $secondary-color
 	background-color: $primary-color
-	border-color: darken($primary-color, 15%)
+	border-color: $tertiary-color
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary
-	background: darken($primary-color, 10%)
+	background: $tertiary-color
 
-$icons: (delete: '\f014', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a')
+$icons: (delete: '\f014', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a', add: '\f067')
 
 @each $name, $icon in $icons
 	i.#{$name}:before

@@ -1,4 +1,4 @@
-const shouldRun = false
+const shouldRun = true
 
 Meteor.startup(() => {
 	if(shouldRun) {

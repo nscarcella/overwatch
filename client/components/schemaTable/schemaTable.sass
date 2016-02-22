@@ -1,9 +1,18 @@
 @import '../../commons'
 
 .schemaTable
-	tbody tr i
-			font-size: 32px
-			color: $primary-color
+	
+	tbody
+		tr
+			.action
+				font-size: 26px
+				color: $primary-color
+				&:hover
+					color: $tertiary-color
+
+			& > td
+				padding: 0px 8px
+				vertical-align: middle
 
 	.reactive-table-filter
 		.input-group-addon
