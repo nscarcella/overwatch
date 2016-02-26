@@ -1,5 +1,8 @@
 @import 'commons'
 
+a
+	cursor: pointer
+
 .btn-primary
 	color: $secondary-color
 	background-color: $primary-color
@@ -8,7 +11,7 @@
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary
 	background: $tertiary-color
 
-$icons: (delete: '\f014', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a', add: '\f067')
+$icons: (delete: '\f014', edit: '\f044', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a', add: '\f067', openCourse: '\f067')
 
 @each $name, $icon in $icons
 	i.#{$name}:before

@@ -1,0 +1,6 @@
+h1 #{title}
++autoForm(id='subject-edit' collection="Subjects" doc=doc type=formType input-col-class="col-sm-9" label-class="col-sm-3")
+		+afQuickFields(fields="name, code")
+		div
+			button.btn.btn-primary(type="submit") #{submitText}
+			button.btn.btn-default.cancel(type="button") Cancel

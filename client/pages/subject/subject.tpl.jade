@@ -1,4 +1,3 @@
-.subject
-	h2 #{code}: #{name}
-
-	+quickForm(collection="Subjects" doc=this fields="name, code" id="updateForm" type="readonly" label-class="col-sm-3" input-col-class="col-sm-9")
++element(title=title actions='openCourse')
+		h2 Courses
+		+schemaTable(settings=tableSettings)

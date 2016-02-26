@@ -6,9 +6,21 @@ Template.alertPanel.events({
 	}
 })
 
+const pendingSessionKey = 'pendingAlerts'
+
+Session.setDefault(pendingSessionKey, [])
+
 Alert = {
-	info: (message, undoable = false) => sAlert.info(message, {undoable: true}),
-	success: (message, undoable = false) => sAlert.success(message, {undoable: true}),
-	warning: (message, undoable = false) => sAlert.warning(message, {undoable: true}),
-	error: (message, undoable = false) => sAlert.error(message, {undoable: true})
+	pendingAlertsDelay: 500,
+	later: {},
+	flush() {
+		let delay = 0
+		for (const {type, message, undoable} of Session.get(pendingSessionKey))
+			setTimeout(()=> Alert[type](message, undoable), delay++ * Alert.pendingAlertsDelay)
+		Session.set(pendingSessionKey, [])
+	}
+}
+for(const type of ['info', 'success', 'warning', 'error']) {
+	Alert[type] = (message, undoable = false) => sAlert[type](message, {undoable: undoable})
+	Alert.later[type] = (message, undoable = false) => Session.set(pendingSessionKey, [...Session.get(pendingSessionKey), {type: type, message: message, undoable: undoable}])
 }
