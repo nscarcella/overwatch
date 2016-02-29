@@ -1,24 +1,27 @@
 Template.schemaTable.helpers({
 	innerTableSettings : function() {
+		const schema = this.settings.schema || this.settings.collection.simpleSchema()
+		const listableFields = this.settings.fields || schema.objectKeys().filter(key => schema._schema[key].listable)
 
-		const actions = this.settings.actions || []
-		const collection = this.settings.collection
-		const schema = this.settings.schema || collection.simpleSchema()
-		const listableFields = schema.objectKeys().filter(key => schema._schema[key].listable)
-
-		return Object.assign({showRowCount: true, noDataTmpl: Template.emptySchemaTable}, this.settings, {
-			collection: collection.find({}, {transform: doc => collection._transform(Object.assign(doc, {actions: actions})) }),
-			fields: [...listableFields, { 'label': "Actions", tmpl: Template.actionsCell} ]
-		})
+		return Object.assign({
+			showRowCount: true,
+			rowsPerPage: 5,
+			noDataTmpl: Template.emptySchemaTable,
+			fields: [...listableFields, {'label': "Actions", tmpl: Template.actionsCell} ]
+		}, this.settings)
 	}
 })
 
 Template.schemaTable.events({
-	'click .reactive-table tbody tr': function(event) {
-    const action = event.target.getAttribute('action')
-    if(action) {
-    	this[action]()
-    	event.stopPropagation()
-    }
+	'click .reactive-table tbody tr': function(event, template) {
+    const actionKey = event.target.dataset.action
+    const action = actionKey ? this.actions[actionKey] : template.data.settings.onRowClick || () =>  null
+
+    action.bind(this)()
+  	event.stopPropagation()
 	}
+})
+
+Template.actionsCell.helpers({
+	actionKeys() { return Object.keys(this.actions) }
 })

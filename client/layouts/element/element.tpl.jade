@@ -2,7 +2,7 @@
 	.header
 		h1 #{title}
 		.actions
-			each actionList
+			each actionKeys
 				i.action(data-action='#{this}' class='#{this}' title='#{this}')
 	.content
 		+UI.contentBlock

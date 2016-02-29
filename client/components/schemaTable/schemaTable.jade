@@ -7,5 +7,5 @@ template(name='emptySchemaTable')
 		p No entries to show
 
 template(name='actionsCell')
-		each actions
-			i(class='action #{this}' action='#{this}' title='#{this}')
+		each actionKeys
+			i(class='action #{this}' data-action='#{this}' title='#{this}')

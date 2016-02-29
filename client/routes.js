@@ -1,3 +1,5 @@
+import {Subjects} from '../lib/model/Subject'
+
 Router.configure({
 	layoutTemplate: 'layout'
 })

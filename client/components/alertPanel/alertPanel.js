@@ -1,5 +1,5 @@
 Template.alertPanel.events({
-	'click .alertPanel [action="undo"]': function (event) {
+	'click .alertPanel [data-action="undo"]': function (event) {
 		event.preventDefault()
 		tx.undo()
 		sAlert.close(this._id)
