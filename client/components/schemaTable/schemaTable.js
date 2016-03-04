@@ -15,7 +15,7 @@ Template.schemaTable.helpers({
 Template.schemaTable.events({
 	'click .reactive-table tbody tr': function(event, template) {
     const actionKey = event.target.dataset.action
-    const action = actionKey ? this.actions[actionKey] : template.data.settings.onRowClick || () =>  null
+    const action = actionKey ? this.actions[actionKey] : template.data.settings.onRowClick || (() =>  null)
 
     action.bind(this)()
   	event.stopPropagation()
@@ -23,5 +23,5 @@ Template.schemaTable.events({
 })
 
 Template.actionsCell.helpers({
-	actionKeys() { return Object.keys(this.actions) }
+	actionKeys() { return Object.keys(this.actions || {}) }
 })
