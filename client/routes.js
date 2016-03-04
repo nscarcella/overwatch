@@ -1,4 +1,4 @@
-import {Subjects} from '../lib/model/Subject'
+import { Subjects } from '/lib/collections.js'
 
 Router.configure({
 	layoutTemplate: 'layout'

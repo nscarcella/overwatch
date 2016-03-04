@@ -1,3 +1,5 @@
+import { Subjects } from '/lib/collections.js'
+
 const shouldRun = false
 
 Meteor.startup(() => {
