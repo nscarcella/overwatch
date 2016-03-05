@@ -1,11 +1,13 @@
 Template.schemaTable.helpers({
 	innerTableSettings : function() {
-		const schema = this.settings.schema || this.settings.collection.simpleSchema()
+		const collection = this.collection || this.settings.collection
+		const schema = this.settings.schema || collection.simpleSchema()
 		const listableFields = this.settings.fields || schema.objectKeys().filter(key => schema._schema[key].listable)
 
 		return Object.assign({
 			showRowCount: true,
 			rowsPerPage: 5,
+			collection: collection,
 			noDataTmpl: Template.emptySchemaTable,
 			fields: [...listableFields, {'label': "Actions", tmpl: Template.actionsCell} ]
 		}, this.settings)

@@ -1,4 +1,4 @@
-import { Subjects } from '/lib/collections.js'
+import Subject from '/lib/model/Subject.js'
 
 AutoForm.addHooks('subject-edit', {
 	onSuccess: (formType, result) => {
@@ -10,11 +10,10 @@ AutoForm.addHooks('subject-edit', {
 const either = (context,edit,create) => context._id ? edit : create
 
 Template['subject.edit'].helpers({
-	collection() {return Subjects },
-	title(){ return either(this, 'Edit Subject', 'Create Subject') },
-	doc(){ return either(this, this, null) },
-	formType(){ return either(this, 'transactional-update', 'transactional-insert')},
-	submitText() { return either(this, 'Update', 'Create') }
+	title(){ return either(this.target, 'Edit Subject', 'Create Subject') },
+	doc(){ return either(this.target, this.target, null) },
+	formType(){ return either(this.target, 'transactional-update', 'transactional-insert')},
+	submitText() { return either(this.target, 'Update', 'Create') }
 })
 
 Template['subject.edit'].events({

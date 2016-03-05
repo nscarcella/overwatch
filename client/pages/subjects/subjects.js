@@ -1,8 +1,7 @@
-import { Subjects } from '/lib/collections.js'
+import Subject from '/lib/model/Subject.js'
 
 Template.subjects.helpers({
 	tableSettings : () => ({
-		collection: Subjects,
 		onRowClick: function(event) {
 			Router.go(`/subjects/${this.code}`)
 		}
