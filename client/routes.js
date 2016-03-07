@@ -19,8 +19,7 @@ Router.route('/subjects/__new__', { name: 'subject.insert', template: 'SubjectEd
 	target: new Subject()
 }}})
 Router.route('/subjects/:code', { name: 'subject.show', data() { return {
-	target: Subject.collection().findOne({code: this.params.code}),
-	bleh: Object.keys(this.params)
+	target: Subject.collection().findOne({code: this.params.code})
 }}})
 Router.route('/subjects/:code/edit', { name: 'subject.update', template: 'SubjectEdit', data() { return {
 	collection: Subject.collection(),

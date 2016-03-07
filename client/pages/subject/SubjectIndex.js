@@ -2,6 +2,7 @@ import Subject from '/lib/model/Subject.js'
 
 Template.SubjectIndex.helpers({
 	tableSettings : () => ({
+		elementClass: Subject,
 		onRowClick: function(event) {
 			Router.go('subject.show', this)
 		}
