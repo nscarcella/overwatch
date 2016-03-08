@@ -1,5 +1,4 @@
 import Subject from '/lib/model/Subject.js'
-import Course from '/lib/model/Course.js'
 
 const shouldRun = true
 
@@ -8,7 +7,7 @@ Meteor.startup(() => {
 		console.log('Initing DBs')
 		
 		Subject.collection().remove({}, () => {
-			Subject.collection().insert({name: 'Materia 01', code: 'M01', courses: [
+			Subject.collection().insert({name: 'Materia 01', code: 'M01', courses:[
 				{code: 'M01C01', year: 2013, quarter: 'A', open: false},
 				{code: 'M01C02', year: 2014, quarter: 'A', open: false},
 				{code: 'M01C03', year: 2014, quarter: 'C1', open: false},
