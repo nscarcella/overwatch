@@ -25,3 +25,11 @@ Router.route('/subjects/:code/edit', { name: 'subject.update', template: 'Subjec
 	collection: Subject.collection(),
 	target: Subject.collection().findOne({code: this.params.code})
 }}})
+
+Router.route('/subjects/:subjectCode/courses/__new__', { name: 'course.insert', template: 'CourseEdit', data() {return {
+}}})
+Router.route('/subjects/:subjectCode/courses/:code', { name: 'course.show', data() { return {
+	target: Subject.collection().findOne({code: this.params.code}).courses.find(course => course.code === this.params.code)
+}}})
+Router.route('/subjects/:subjectCode/courses/:code/edit', { name: 'course.update', template: 'CourseEdit', data() { return {
+}}})

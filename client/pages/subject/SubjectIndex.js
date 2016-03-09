@@ -1,12 +1,12 @@
 import Subject from '/lib/model/Subject.js'
 
 Template.SubjectIndex.helpers({
-	tableSettings : () => ({
+	tableSettings() { return {
 		elementClass: Subject,
-		onRowClick: function(event) {
-			Router.go('subject.show', this)
+		onRowClick: function(subject) {
+			Router.go('subject.show', subject)
 		}
-	})
+	}}
 })
 
 Template.SubjectIndex.events({
