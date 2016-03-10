@@ -8,6 +8,6 @@ Template.SubjectShow.helpers({
 			Router.go('course.show', {subjectCode: this.target.code, code: course.code} )
 		}
 	}},
-	openCourses() { return this.target.courses.filter(course => course.open) },
-	closedCourses() { return this.target.courses.filter(course => !course.open) }
+	openCourses() { return this.target.courses.fetch().filter(course => course.open) },
+	closedCourses() { return this.target.courses.fetch().filter(course => !course.open) }
 })
