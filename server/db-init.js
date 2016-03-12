@@ -1,7 +1,7 @@
 import Subject from '/lib/model/Subject.js'
 import Course from '/lib/model/Course.js'
 
-const shouldRun = true
+const shouldRun = false
 
 Meteor.startup(() => {
 	if(shouldRun) Promise.resolve(console.log('Initing DBs'))

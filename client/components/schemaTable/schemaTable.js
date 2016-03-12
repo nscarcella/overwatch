@@ -12,11 +12,7 @@ Template.schemaTable.helpers({
 			rowsPerPage: 5,
 			collection: isArray(collection) ? elementClass.createCollection(null, collection) : collection,
 			noDataTmpl: Template.emptySchemaTable,
-			fields: [...listableFields, {'label': 'Actions', fn: (v,o) => {
-				return new Spacebars.SafeString(
-					Object.keys(new elementClass(o).actions || {}).map(k => `<i class='action ${k}' data-action='${k}' title='${k}'/>`).join('')
-				)
-			} } ]
+			fields: [...listableFields, {'label': 'Actions', tmpl: Template.actionBar } ]
 		}, this.settings)
 	}
 })

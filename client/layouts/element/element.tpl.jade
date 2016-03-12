@@ -1,8 +1,7 @@
 .element
 	.header
 		h1 #{title}
-		.actions
-			each actionKeys
-				i.action(data-action='#{this}' class='#{this}' title='#{this}')
+		with target
+			+actionBar
 	.content
 		+UI.contentBlock

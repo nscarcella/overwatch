@@ -6,9 +6,8 @@ Template.SubjectIndex.helpers({
 		onRowClick: function(subject) {
 			Router.go('subject.show', subject)
 		}
+	}},
+	actions() { return {
+		actions: { add() { Router.go('subject.insert') } }
 	}}
-})
-
-Template.SubjectIndex.events({
-	'click [data-action=add]': function() { Router.go('subject.insert') }
 })

@@ -1,2 +1,6 @@
 +element(title=target.code target=target)
+	+autoForm(id='course-show' doc=target.doc collection=collection type='readonly' input-col-class='col-sm-9' label-class='col-sm-3')
+		+afQuickFields(fields='year, quarter')
+
+	h2 Students
 	+schemaTable(collection=target.students settings=tableSettings)
