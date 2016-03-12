@@ -1,10 +1,12 @@
 import Subject from '/lib/model/Subject.js'
 
-AutoForm.addHooks('subject-edit', {
-	onSuccess: (formType, result) => {
-		Alert.later.success(formType === 'transactional-insert' ? 'Element inserted successfully.' : 'Element udated successfully', true)
-		Router.go('subject.index')
-	}
+Template.SubjectEdit.onCreated(function(){
+	AutoForm.addHooks('subject-edit', {
+		onSuccess: (formType, result) => {
+			Alert.later.success(formType === 'transactional-insert' ? 'Element inserted successfully.' : 'Element udated successfully', true)
+			Router.go('subject.index')
+		}
+	})
 })
 
 const either = (context,edit,create) => context._id ? edit : create
@@ -17,5 +19,8 @@ Template.SubjectEdit.helpers({
 })
 
 Template.SubjectEdit.events({
-	'click button.cancel': () => Router.go('subject.index')
+	'click button.cancel'() {
+		if(history.state && history.state.initial) Router.go('subject.index')
+		else history.back()
+	}
 })

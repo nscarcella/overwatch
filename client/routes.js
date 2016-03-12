@@ -4,7 +4,8 @@ import Course from '/lib/model/Course.js'
 const { subscribe } = Meteor
 
 Router.configure({
-	layoutTemplate: 'layout'
+	layoutTemplate: 'layout',
+	waitOn(){ return subscribe('userData') }
 })
 
 Router.onRun(function() {
@@ -27,7 +28,7 @@ Router.route('/subjects/:code/edit', {
 	waitOn() { return subscribe('subjects', { code: this.params.code } ) },
 	data() { return {
 		collection: Subject.collection(),
-		target: Subject.collection().findOne({code: this.params.code})
+		target: Subject.collection().findOne({code: this.params.code}, {reactive: false})
 	}}
 })
 Router.route('/subjects/__new__', {
@@ -42,7 +43,7 @@ Router.route('/subjects/:code', {
 	name: 'subject.show',
 	waitOn() { return [ subscribe('subjects', { code: this.params.code }), subscribe('courses', this.params.code) ] },
 	data() { return {
-		target: Subject.collection().findOne({code: this.params.code})
+		target: Subject.collection().findOne({code: this.params.code}, {reactive: false})
 	}}
 })
 
@@ -53,16 +54,27 @@ Router.route('/subjects/:code/courses/__new__', {
 })
 Router.route('/subjects/:subjectCode/courses/:code', {
 	name: 'course.show',
-	waitOn() { return subscribe('courses', this.params.subjectCode, {code: this.params.code}) },
+	waitOn() { return [
+		subscribe('subjects', { code: this.params.subjectCode } ),
+		subscribe('courses', this.params.subjectCode, {code: this.params.code})
+	]},
 	data() { return {
-		target: Course.collection().findOne({code: this.params.code})
+		target: Course.collection().findOne({code: this.params.code}, {reactive: false})
 	}}
 })
 Router.route('/subjects/:subjectCode/courses/:code/edit', {
 	name: 'course.update',
-	waitOn() { return subscribe('courses', this.params.subjectCode, {code: this.params.code}) },
 	template: 'CourseEdit',
-	data() { return {
-		target: Course.collection().findOne({code: this.params.code})
-	}}
+	waitOn() { return [
+		subscribe('subjects', { code: this.params.subjectCode } ),
+		subscribe('courses', this.params.subjectCode, {code: this.params.code})
+	]},
+	data() {
+		const subject = Subject.collection().findOne({code: this.params.subjectCode}, {reactive: false})
+		return {
+			subject: subject,
+			collection: Course.collection(),
+			target: Course.collection().findOne({code: this.params.code, _subjectId: subject && subject._id}, {reactive: false})
+		}
+	}
 })
