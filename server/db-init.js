@@ -1,7 +1,8 @@
 import Subject from '/lib/model/Subject.js'
 import Course from '/lib/model/Course.js'
+import Student from '/lib/model/Student.js'
 
-const shouldRun = false
+const shouldRun = true
 
 Meteor.startup(() => {
 	if(shouldRun) Promise.resolve(console.log('Initing DBs'))
@@ -19,7 +20,19 @@ Meteor.startup(() => {
 			Course.collection().insert({_subjectId: newSubject, code: 'M01C06', year: 2015, quarter: 'C1', open: false})
 			Course.collection().insert({_subjectId: newSubject, code: 'M01C07', year: 2015, quarter: 'C2', open: false})
 			Course.collection().insert({_subjectId: newSubject, code: 'M01C08', year: 2016, quarter: 'C1', open: true})
-			Course.collection().insert({_subjectId: newSubject, code: 'M01C09', year: 2016, quarter: 'A', open: true})
+			return Course.collection().insert({_subjectId: newSubject, code: 'M01C09', year: 2016, quarter: 'A', open: true})
+		})
+		.then(newCourse => {
+			Student.collection().insert({firstName: 'Tito', lastName: 'Puente', idNumber: '1191910', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Raul', lastName: 'Porchetto', idNumber: '1191911', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Emilio', lastName: 'Dissi', idNumber: '1191912', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Juana', lastName: 'Molina', idNumber: '1191913', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Teto', lastName: 'Medina', idNumber: '1191914', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Alfredo', lastName: 'Casero', idNumber: '1191915', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Marco', lastName: 'Polo', idNumber: '1191916', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Andrea', lastName: 'Frigerio', idNumber: '1191917', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Beto', lastName: 'Alonso', idNumber: '1191918', _courseId: newCourse})
+			Student.collection().insert({firstName: 'Yiya', lastName: 'Murano', idNumber: '1191919', _courseId: newCourse})
 		})
 		.then(() => {
 			Subject.collection().insert({name: 'Materia 02', code: 'M02'})
@@ -43,6 +56,6 @@ Meteor.startup(() => {
 			Subject.collection().insert({name: 'Materia 20', code: 'M20'})
 		})
 		.then(() => console.log('Done!'))
-		.catch(error => console.log(`Error! ${error}`))
+		.catch(error => console.log(`DB-init ${error}`))
 	
 })

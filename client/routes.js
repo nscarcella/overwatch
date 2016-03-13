@@ -55,8 +55,9 @@ Router.route('/subjects/:code/courses/__new__', {
 Router.route('/subjects/:subjectCode/courses/:code', {
 	name: 'course.show',
 	waitOn() { return [
-		subscribe('subjects', { code: this.params.subjectCode } ),
-		subscribe('courses', this.params.subjectCode, {code: this.params.code})
+		subscribe('subjects', { code: this.params.subjectCode }),
+		subscribe('courses', this.params.subjectCode, {code: this.params.code}),
+		subscribe('students', this.params.subjectCode, this.params.code)
 	]},
 	data() { return {
 		target: Course.collection().findOne({code: this.params.code}, {reactive: false})

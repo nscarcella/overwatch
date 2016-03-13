@@ -12,16 +12,14 @@ Template.schemaTable.helpers({
 			rowsPerPage: 5,
 			collection: isArray(collection) ? elementClass.createCollection(null, collection) : collection,
 			noDataTmpl: Template.emptySchemaTable,
-			fields: [...listableFields, {'label': 'Actions', tmpl: Template.actionBar } ]
+			fields: [...listableFields, {'label': 'Actions', tmpl: Template.actionBar, sortable: false } ]
 		}, this.settings)
 	}
 })
 
 Template.schemaTable.events({
 	'click .reactive-table tbody tr': function(event, template) {
-    const actionKey = event.target.dataset.action
-    const action = actionKey ? this.actions[actionKey].bind(this) : template.data.settings.onRowClick || (() =>  null)
-
+    const action = template.data.settings.onRowClick || (() =>  null)
     action(this)
   	event.stopPropagation()
 	}

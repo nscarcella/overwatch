@@ -1,6 +1,6 @@
 Template.actionBar.helpers({
 	actionEntries() {
-		return Object.keys(this.actions).map(k => ({key: k, callback: this.actions[k].bind(this) }))
+		return Object.keys(this.actions || {}).map(k => ({key: k, callback: this.actions[k].bind(this) }))
 	}
 })
 
