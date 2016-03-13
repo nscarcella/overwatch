@@ -8,7 +8,8 @@ Meteor.startup(() => {
 	if(shouldRun) Promise.resolve(console.log('Initing DBs'))
 		.then(() => Promise.all([
 			new Promise(resolve => Course.collection().remove({}, resolve) ),
-			new Promise(resolve => Subject.collection().remove({}, resolve) )
+			new Promise(resolve => Subject.collection().remove({}, resolve) ),
+			new Promise(resolve => Student.collection().remove({}, resolve) )
 		]))
 		.then(() => Subject.collection().insert({name: 'Materia 01', code: 'M01'}))
 		.then(newSubject => {
