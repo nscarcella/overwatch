@@ -1,6 +1,6 @@
-h1 #{title}
-+autoForm(id='subject-edit' collection=collection doc=doc type=formType)
-		+afQuickFields(fields='name, code')
-		div
-			button.btn.btn-primary(type='submit') #{submitText}
-			button.btn.btn-default.cancel(type='button') Cancel
+h1 #{either 'Edit Subject' 'Create Subject'}
++autoForm(id='subject-edit' collection=collection doc=(either target null) type=(either 'transactional-update' 'transactional-insert'))
+	+afQuickFields(fields='name, code')
+	div
+		button.btn.btn-primary(type='submit') #{either 'Update' 'Create'}
+		button.btn.btn-default.cancel(type='button') Cancel
