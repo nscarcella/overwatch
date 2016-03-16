@@ -27,9 +27,6 @@ fortawesome:fontawesome
 juliancwirko:s-alert
 juliancwirko:s-alert-stackslide
 twbs:bootstrap
-babrahams:transactions
-tap:i18n
-mquandalle:jade
 avital:mocha
 constellation:console
 babrahams:temple
@@ -39,3 +36,6 @@ constellation:plugins
 constellation:subscriptions
 constellation:autopublish
 lai:ddp-inspector
+tap:i18n@=1.8.0
+babrahams:transactions@=0.7.12
+dalgard:jade

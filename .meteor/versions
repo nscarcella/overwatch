@@ -20,7 +20,7 @@ babel-compiler@6.5.0-beta.16
 babel-runtime@0.1.5-beta.16
 babrahams:editable-json@0.6.3
 babrahams:temple@0.4.1
-babrahams:transactions@0.7.11
+babrahams:transactions@0.7.12
 base64@1.0.5-beta.16
 binary-heap@1.0.5-beta.16
 blaze@2.1.4-beta.16
@@ -39,6 +39,8 @@ constellation:plugins@0.4.0
 constellation:session@0.4.0
 constellation:shorten-collection-names@0.4.0
 constellation:subscriptions@0.4.1
+dalgard:jade@0.5.4_1
+dalgard:jade-compiler@0.5.4_1
 dburles:mongo-collection-instances@0.3.5
 ddp@1.2.2-beta.16
 ddp-client@1.2.2-beta.16
@@ -99,8 +101,6 @@ momentjs:moment@2.10.6
 mongo@1.1.4-beta.16
 mongo-id@1.0.1-beta.16
 mousetrap:mousetrap@1.4.6_1
-mquandalle:jade@0.4.9
-mquandalle:jade-compiler@0.4.5
 npm-mongo@1.4.40-beta.16
 oauth@1.1.7-beta.16
 oauth2@1.1.6-beta.16
@@ -125,7 +125,7 @@ session@1.1.2-beta.16
 socialize:server-time@0.1.2
 spacebars@1.0.8-beta.16
 spacebars-compiler@1.0.8-beta.16
-tap:i18n@1.7.0
+tap:i18n@1.8.0
 templating@1.1.6-beta.16
 templating-tools@1.0.1-beta.16
 tmeasday:test-reporter-helpers@0.2.0
