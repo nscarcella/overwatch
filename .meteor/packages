@@ -7,7 +7,6 @@
 meteor-base             # Packages every Meteor app needs to have
 mobile-experience       # Packages for a great mobile UX
 mongo                   # The database Meteor supports right now
-blaze-html-templates    # Compile .html files into Meteor Blaze views
 session                 # Client-side reactive dictionary for your app
 jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
@@ -16,7 +15,6 @@ insecure                # Allow all DB writes from clients (for prototyping)
 seba:minifiers-autoprefixer
 ecmascript
 check
-iron:router
 fourseven:scss
 aldeed:collection2
 aldeed:autoform
@@ -29,13 +27,17 @@ juliancwirko:s-alert-stackslide
 twbs:bootstrap
 babrahams:transactions
 tap:i18n
-mquandalle:jade
 avital:mocha
+
 constellation:console
-babrahams:temple
 constellation:session
 constellation:shorten-collection-names
 constellation:plugins
 constellation:subscriptions
 constellation:autopublish
 lai:ddp-inspector
+
+kadira:flow-router
+kadira:react-layout
+static-html
+react-meteor-data@=0.2.6-beta.16
