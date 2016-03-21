@@ -1,13 +1,17 @@
 import React from 'react'
+import {njsxComponent, njsxElement, div, h1, header, img} from '/client/reactNJSX.js'
+
 const {__} = TAPi18n
 
-export default ({content}) =>
-	<div className='mainLayout'>
-		<header>
-			<img className='logo' src="/logo.png"/>
-			<h1> {__('title')} </h1>
-		</header>
-		<div className='container'>
-			{content}
-		</div>
-	</div>
+const MainLayout = njsxComponent( ({children}) => {
+	return div('.mainLayout')(
+		header(
+			img('.logo')({src: '/logo.png'}),
+			h1(__('title'))
+		),
+		div('.container')(children)
+	)
+}
+)
+
+export default njsxElement(MainLayout)

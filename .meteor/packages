@@ -38,6 +38,5 @@ constellation:autopublish
 lai:ddp-inspector
 
 kadira:flow-router
-kadira:react-layout
 static-html
 react-meteor-data@=0.2.6-beta.16

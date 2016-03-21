@@ -1,20 +1,14 @@
-// Template.actionBar.helpers({
-// 	actionEntries() {
-// 		return Object.keys(this.actions || {}).map(k => ({key: k, callback: this.actions[k].bind(this) }))
-// 	}
-// })
-
-// Template.actionBar.events({
-// 	'click [data-action]': function(event, template) {
-//   	event.stopPropagation()
-//     this.callback()
-// 	}
-// })
 import React from 'react'
+import {njsxComponent, njsxElement, div, i} from '/client/reactNJSX.js'
 
-export default ({actions}) =>
-	<div className='actionBar'>
-		{actions.map(({key, callback}) =>
-			<i className={`action ${key}`} data-action={key} title={key} onClick={callback}/>
-		)}
-	</div>
+const {keys} = Object
+
+const ActionBar = njsxComponent( ({actions = {}}) =>
+	div('.actionBar')(
+		keys(actions).map( (key, index) =>
+			i(`.action.${key}`)({ key: index, 'data-action': key, title: key, onClick: actions[key] })
+		)
+	)
+)
+
+export default njsxElement(ActionBar)
