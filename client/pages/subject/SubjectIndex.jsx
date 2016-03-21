@@ -23,10 +23,10 @@ import {njsxComponent, njsxElement, div, i} from '/client/reactNJSX.js'
 
 const griddle = njsxElement(Griddle)
 
-export const SubjectIndex = njsxComponent( ({subjects}) =>
+const SubjectIndex = njsxComponent( ({subjects}) =>
 	element({title: __('subjects'), target: {actions: {add(){ console.log("YEAH!") } }} })(
 		griddle({useGriddleStyles:true, columns:['code', 'name'], results: subjects})
 	)
 )
 
-export const subjectIndex = njsxElement(SubjectIndex)
+export default njsxElement(SubjectIndex)

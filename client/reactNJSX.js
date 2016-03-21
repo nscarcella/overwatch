@@ -4,12 +4,12 @@ const {createElement} = React
 const {assign} = Object
 const {isArray} = Array
 
-export function njsxComponent(builder){ return (...args) => builder(args).createElement() }
+export function njsxComponent(builder){ return (...args) => builder(...args).createElement() }
 export class NJSXComponent extends React.Component {
 	render() {return this.renderer().createElement() }
 }
 
-export function njsxElement(type, props={}, children=[]) {
+export function njsxElement(type, props={}, ...children) {
 	const builder = (...args) => {
 		const finalProps = assign({},props)
 		const finalChildren = [...children]
@@ -19,15 +19,18 @@ export function njsxElement(type, props={}, children=[]) {
 				case 'string':
 					if(arg.trim().startsWith('.')) {
 						const newClasses = arg.split('.').join(' ').trim()
-						const oldClasses = finalProps.className || ''
-						if(newClasses || oldClasses) assign(finalProps, {className: `${oldClasses} ${newClasses}`})
+						const oldClasses = finalProps.className ? `${finalProps.className} ` : ''
+						if(newClasses || oldClasses) assign(finalProps, {className: `${oldClasses}${newClasses}`})
 					} else finalChildren.push(arg)
 					break
 				case 'function':
 					finalChildren.push(arg.createElement())
 					break
 				case 'object':
-					if(isArray(arg)) finalChildren.push(...arg)
+					if(isArray(arg))
+						for(const child of arg)
+							finalChildren.push(typeof(child) === 'function' ? child.createElement() : child)
+					else if(arg.props) finalChildren.push(arg)
 					else assign(finalProps, arg)
 					break
 				default:
@@ -35,11 +38,20 @@ export function njsxElement(type, props={}, children=[]) {
 			}
 		}
 
-		return njsxElement(type, finalProps, finalChildren)
+		return njsxElement(type, finalProps, ...finalChildren)
 	}
 	builder.isNJSX = true
-	builder.$$typeof = createElement('x').$$typeof
-	builder.createElement = () => createElement(type, props, ...children)
+	builder.createElement = () => {
+		// const adaptedType = typeof(type) === 'function'
+		// 	? (...args) => {
+		// 		const r = type(...args)
+		// 		r.createElement ? r.createElement() : r
+		// 	}
+		// 	: type
+		// return createElement(adaptedType, props, ...children)
+		const e = createElement(type, props, ...children)
+		return createElement(type, props, ...children)
+	}
 	return builder
 }
 

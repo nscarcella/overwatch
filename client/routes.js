@@ -2,13 +2,14 @@ import Subject from '/lib/model/Subject.js'
 import Course from '/lib/model/Course.js'
 
 import {FlowRouter as Router} from 'meteor/kadira:flow-router'
-import {SubjectIndex, subjectIndex} from '/client/pages/subject/SubjectIndex.jsx'
+import subjectIndex from '/client/pages/subject/SubjectIndex.jsx'
 import mainLayout from '/client/layouts/mainLayout/MainLayout.jsx'
 
 import React from 'react'
 import { createContainer } from 'meteor/react-meteor-data'
 
 import ReactDOM from 'react-dom'
+import { njsxElement, njsxComponent } from './reactNJSX.js'
 
 const { subscribe } = Meteor
 
@@ -17,23 +18,22 @@ const reactContainer = document.createElement('div')
 reactContainer.setAttribute('id', 'react-container')
 document.body.appendChild(reactContainer)
 
-// const baseRender = ReactDOM.render
-// ReactDOM.render = function(what,where){ return baseRender(what.isNJSX ? what.create() : what, where) }
+const baseRender = ReactDOM.render
+ReactDOM.render = function(what,where){ return baseRender(what.isNJSX ? what.createElement() : what, where) }
+
+const njsxContainer = (element, setup) => njsxElement(createContainer(setup, njsxComponent(props => element(props))))
 
 Router.route('/subjects', {
 	action: function(params, queryParams) {
-		
-		const subjectIndexPage = createContainer(params => {
+		const subjectIndexPage = njsxContainer(subjectIndex, params => {
 			const handle = subscribe('subjects')
 			return {
 				loading: !handle.ready(),
 				subjects: Subject.collection().find().fetch()
 			}
-		// }, props => subjectIndex(props).createElement())
-		}, SubjectIndex)
+		})
 
-		// ReactDOM.render(React.createElement(subjectIndexPage), reactContainer)
-		ReactDOM.render(React.createElement(()=> mainLayout(subjectIndex({subjects:[{code: 'M01', name: 'materia'}]})).createElement()), reactContainer)
+		ReactDOM.render(mainLayout(subjectIndexPage), reactContainer)
 	}
 })
 
