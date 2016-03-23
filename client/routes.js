@@ -12,6 +12,7 @@ import subjectIndex from '/client/pages/subject/SubjectIndex.jsx'
 import mainLayout from '/client/layouts/mainLayout/mainLayout.js'
 
 const { subscribe } = Meteor
+const { assign } = Object
 
 const reactContainer = document.body.appendChild(document.createElement('div'))
 
@@ -27,13 +28,20 @@ subjects.route('/', {
 		const subjectIndexPage = njsxContainer(subjectIndex, params => {
 			const handle = subscribe('subjects')
 			return {
-				loading: !handle.ready(),
+				// loading: !handle.ready(),
 				subjects: Subject.collection().find().fetch(),
 				actions: { add(){ Router.go('subject.insert') } }
 			}
 		})
 
-		render(mainLayout(subjectIndexPage)(), reactContainer)
+		const mainLayoutPage = njsxContainer(mainLayout(subjectIndexPage), params => {
+			const handle = subscribe('userData')
+			return {
+				user: Meteor.user()
+			}
+		})
+
+		render(mainLayoutPage(), reactContainer)
 	}
 })
 subjects.route('/__new__', {name:'subject.insert'})
