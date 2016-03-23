@@ -1,14 +1,12 @@
-import React from 'react'
-import {njsxComponent, njsxElement, div, i} from '/client/reactNJSX.js'
+import {njsx, div, i} from '/client/reactNJSX.js'
 
 const {keys} = Object
 
-const ActionBar = njsxComponent( ({actions = {}}) =>
+const ActionBar = ({actions = {}}) =>
 	div('.actionBar')(
 		keys(actions).map( (key, index) =>
 			i(`.action.${key}`)({ key: index, 'data-action': key, title: key, onClick: actions[key] })
 		)
-	)
-)
+	)()
 
-export default njsxElement(ActionBar)
+export default njsx(ActionBar)

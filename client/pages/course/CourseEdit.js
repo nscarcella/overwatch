@@ -1,4 +1,4 @@
-// import Course from '/lib/model/Course.js'
+// import Course from '/imports/model/Course.js'
 
 // Template.CourseEdit.onCreated(function(){
 // 	AutoForm.addHooks('course-edit', {

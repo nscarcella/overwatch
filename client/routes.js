@@ -1,41 +1,55 @@
-import Subject from '/lib/model/Subject.js'
-import Course from '/lib/model/Course.js'
+import '/imports/collections.js'
+import Subject from '/imports/model/Subject.js'
+import Course from '/imports/model/Course.js'
 
 import {FlowRouter as Router} from 'meteor/kadira:flow-router'
-import subjectIndex from '/client/pages/subject/SubjectIndex.jsx'
-import mainLayout from '/client/layouts/mainLayout/MainLayout.jsx'
 
-import React from 'react'
+import { render } from 'react-dom'
 import { createContainer } from 'meteor/react-meteor-data'
 
-import ReactDOM from 'react-dom'
-import { njsxElement, njsxComponent } from './reactNJSX.js'
+import { njsx } from './reactNJSX.js'
+import subjectIndex from '/client/pages/subject/SubjectIndex.jsx'
+import mainLayout from '/client/layouts/mainLayout/mainLayout.js'
 
 const { subscribe } = Meteor
 
+const reactContainer = document.body.appendChild(document.createElement('div'))
 
-const reactContainer = document.createElement('div')
-reactContainer.setAttribute('id', 'react-container')
-document.body.appendChild(reactContainer)
+const njsxContainer = (element, setup) => njsx(createContainer(setup, props => element(props)()))
 
-const baseRender = ReactDOM.render
-ReactDOM.render = function(what,where){ return baseRender(what.isNJSX ? what.createElement() : what, where) }
 
-const njsxContainer = (element, setup) => njsxElement(createContainer(setup, njsxComponent(props => element(props))))
 
-Router.route('/subjects', {
+const subjects = Router.group({prefix: '/subjects'})
+subjects.route('/', {
+	name: 'subject.index',
 	action: function(params, queryParams) {
+
 		const subjectIndexPage = njsxContainer(subjectIndex, params => {
 			const handle = subscribe('subjects')
 			return {
 				loading: !handle.ready(),
-				subjects: Subject.collection().find().fetch()
+				subjects: Subject.collection().find().fetch(),
+				actions: { add(){ Router.go('subject.insert') } }
 			}
 		})
 
-		ReactDOM.render(mainLayout(subjectIndexPage), reactContainer)
+		render(mainLayout(subjectIndexPage)(), reactContainer)
 	}
 })
+subjects.route('/__new__', {name:'subject.insert'})
+
+const subject = subjects.group({prefix: '/:code'})
+subject.route('/', {name:'subject.show'})
+subject.route('/edit', {name:'subject.update'})
+
+
+const courses = subject.group({prefix: '/courses'})
+courses.route('/', {name: 'course.index'})
+courses.route('/__new__', {name: 'course.insert'})
+const course = courses.group({prefix: '/:code'})
+course.route('/', {name:'course.show'})
+course.route('/edit', {name:'course.update'})
+
 
 // Router.configure({
 // 	layoutTemplate: 'layout',

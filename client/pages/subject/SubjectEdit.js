@@ -1,4 +1,4 @@
-// import Subject from '/lib/model/Subject.js'
+// import Subject from '/imports/model/Subject.js'
 
 // Template.SubjectEdit.onCreated(function(){
 // 	AutoForm.addHooks('subject-edit', {

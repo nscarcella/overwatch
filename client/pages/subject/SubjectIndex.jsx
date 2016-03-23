@@ -1,32 +1,16 @@
-import Subject from '/lib/model/Subject.js'
-import React from 'react'
-import underscore from 'underscore'
+import Subject from '/imports/model/Subject.js'
 import Griddle from 'griddle-react'
+
+import actionable from '/client/layouts/actionable/actionable.js'
+import {njsx} from '/client/reactNJSX.js'
 
 const {__} = TAPi18n
 
-// Template.SubjectIndex.helpers({
-// 	tableSettings() { return {
-// 		elementClass: Subject,
-// 		onRowClick: function(subject) {
-// 			Router.go('subject.show', subject)
-// 		}
-// 	}},
-// 	actions() { return {
-// 		actions: { add() { Router.go('subject.insert') } }
-// 	}}
-// })
+const griddle = njsx(Griddle)
 
-import actionBar from '/client/components/actionBar/ActionBar.jsx'
-import element from '/client/layouts/element/Element.jsx'
-import {njsxComponent, njsxElement, div, i} from '/client/reactNJSX.js'
-
-const griddle = njsxElement(Griddle)
-
-const SubjectIndex = njsxComponent( ({subjects}) =>
-	element({title: __('subjects'), target: {actions: {add(){ console.log("YEAH!") } }} })(
+const SubjectIndex = ({subjects, actions}) =>
+	actionable({title: __('subjects'), actions })(
 		griddle({useGriddleStyles:true, columns:['code', 'name'], results: subjects})
-	)
-)
+	)()
 
-export default njsxElement(SubjectIndex)
+export default njsx(SubjectIndex)

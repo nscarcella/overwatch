@@ -1,5 +1,11 @@
+const {OneOf, Optional} = Match
 const { defineProperty, assign, keys } = Object
 const { isArray } = Array
+
+SimpleSchema.extendOptions({
+	domainType: Optional(OneOf(Array, Function)),
+	listable: Optional(Boolean)
+})
 
 export default function DomainModel(schemaDescription){
 	const transformedSchemaDescription = assign({}, schemaDescription)

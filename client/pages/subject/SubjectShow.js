@@ -1,4 +1,4 @@
-// import Course from '/lib/model/Course.js'
+// import Course from '/imports/model/Course.js'
 
 // Template.SubjectShow.helpers({
 // 	title() { return `${this.target.code}: ${this.target.name}` }, 

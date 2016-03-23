@@ -1,7 +1,7 @@
 import { expect } from 'meteor/practicalmeteor:chai'
 import DomainModel from './DomainModel.js'
-import '/lib/config/simpleSchema.js'
-import '/lib/jsExtensions.js'
+import '/imports/config/simpleSchema.js'
+import '/imports/jsExtensions.js'
 
 describe('DomainModel', () => {
 
