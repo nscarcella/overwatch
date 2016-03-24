@@ -17,6 +17,8 @@ a
 $icons: (delete: '\f014', edit: '\f044', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a', add: '\f067', openCourse: '\f067', closeCourse: '\f00d')
 
 @each $name, $icon in $icons
+	i
+		text-transform: capitalize
 	i.#{$name}:before
 		content: '#{$icon}'
 		font-family: $font-icon

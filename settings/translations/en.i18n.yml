@@ -5,3 +5,6 @@ subjects: subjects
 login:
   signIn: sign in
   signOut: sign out
+
+action:
+  add: add

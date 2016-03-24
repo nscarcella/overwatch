@@ -5,3 +5,6 @@ subjects: materias
 login:
   signIn: ingresar
   signOut: salir
+
+action:
+  add: crear

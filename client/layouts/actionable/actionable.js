@@ -1,4 +1,4 @@
-import actionBar from '/client/components/actionBar/ActionBar.jsx'
+import actionBar from '/client/imports/components/actionBar/actionBar.js'
 import {njsx, div, header, h1} from '/client/reactNJSX.js'
 
 const Element = ({title='', actions={}, children}) =>
