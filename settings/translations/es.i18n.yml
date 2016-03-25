@@ -8,3 +8,17 @@ login:
 
 action:
   add: crear
+  edit: editar
+  delete: eliminar
+  openCourse: abrir curso
+
+domainModelTable:
+  noData: no hay elementos
+  previous: '<<'
+  next: '>>'
+  actions: acciones
+  filter: buscar
+
+Subject:
+    code: código
+    name: nombre

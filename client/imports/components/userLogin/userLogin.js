@@ -1,9 +1,6 @@
 import {njsx, div, img, a} from '/client/reactNJSX.js'
-import {Template} from "meteor/blaze-html-templates";
 
 const {__} = TAPi18n
-
-const loginButtons = njsx(BlazeToReact('loginButtons'))
 
 const UserLogin = ({user}) =>
 	div('.userLogin')(

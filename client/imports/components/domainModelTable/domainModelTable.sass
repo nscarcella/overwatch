@@ -1,0 +1,123 @@
+@import 'client/commons'
+
+.domainModelTable
+	table
+		$border-radius: 10px
+		$padding-left: 10px
+		$padding-border: 40px
+
+		th
+			background: $primary-color
+			font-size: 18px
+			color: $secondary-color
+			text-transform: capitalize
+			padding-left: $padding-left
+			outline: none
+
+			&:first-child
+				border-radius: $border-radius 0 0 0
+				padding-left: $padding-border
+			&:last-child
+				border-radius: 0 $border-radius 0 0
+				padding-right: $padding-border
+				width: 1%
+
+			&.reactable-header-sort-asc:after, &.reactable-header-sort-desc:after
+				font-family: $font-icon
+				font-weight: normal
+				margin-left: 8px
+			&.reactable-header-sort-asc:after
+				content: '\f15d'
+			&.reactable-header-sort-desc:after
+				content: '\f15e'
+
+		.reactable-data
+			tr
+				&:nth-child(even)
+					background: #f1f1f1
+				&:nth-child(odd)
+					background: #fefefe
+				&:hover
+					background: #e1e1e1
+				&:last-child
+					td:first-child
+						border-radius: 0 0 0 $border-radius
+					td:last-child
+						border-radius: 0 0 $border-radius 0
+				td
+					padding-left: $padding-left
+					&:first-child
+						padding-left: $padding-border
+					&:last-child
+						i:before
+							font-size: 26px
+							margin-right: 14px
+						i:last-child:before
+							margin-right: $padding-border
+
+		.reactable-filterer
+			$filter-height: 30px
+			$filter-radius: 5px
+			$filter-padding: 5px
+
+			text-align: right
+
+			td:after, input
+				float: right
+				height: $filter-height
+				border: solid 1px $tertiary-color
+				margin-bottom: 8px
+
+			td:after
+				background: $primary-color
+				color: $secondary-color
+				font-family: $font-icon
+				content: '\f002'
+				font-size: 22px
+				width: $filter-height
+				line-height: $filter-height - 2
+				text-align: center
+				border-radius: $filter-radius 0 0 $filter-radius
+				border-right-width: 0px
+
+			input, input:focus
+				border-color: $tertiary-color
+				border-radius: 0 $filter-radius $filter-radius 0
+				padding-left: $filter-padding
+				outline: none
+				&::-webkit-input-placeholder
+					text-transform: capitalize
+				&:focus::-webkit-input-placeholder
+					color: transparent
+
+		.reactable-pagination
+			text-align: center
+			a
+				$button-size: 30px
+
+				font-size: 18px
+				font-weight: bold
+				background: $primary-color
+				color: $secondary-color
+				border: 1px solid $tertiary-color
+				width: $button-size
+				height: $button-size
+				display: inline-block
+				vertical-align: middle
+				margin: 10px 5px 10px 0px
+				border-radius: 6px
+				line-height: 24px
+				text-align: center
+				&:hover
+					color: $tertiary-color
+					text-decoration: none
+				&:last-child
+					margin-right: 0px
+
+			.reactable-current-page
+				text-decoration: underline
+
+		.reactable-no-data
+			text-align: center
+			td:first-letter
+				text-transform: capitalize

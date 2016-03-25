@@ -16,12 +16,8 @@ seba:minifiers-autoprefixer
 ecmascript
 check
 aldeed:collection2
-aldeed:autoform
 accounts-google
-aslagle:reactive-table
 fortawesome:fontawesome
-juliancwirko:s-alert
-juliancwirko:s-alert-stackslide
 twbs:bootstrap
 babrahams:transactions
 tap:i18n
@@ -37,7 +33,6 @@ lai:ddp-inspector
 
 kadira:flow-router
 react-meteor-data@=0.2.6-beta.16
-thereactivestack:blazetoreact
-blaze-html-templates
 service-configuration
 fourseven:scss@=3.2.0
+static-html

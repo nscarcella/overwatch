@@ -8,3 +8,18 @@ login:
 
 action:
   add: add
+  edit: edit
+  delete: delete
+  openCourse: open course
+
+
+domainModelTable:
+  noData: there are no elements to show
+  previous: '<<'
+  next: '>>'
+  actions: actions
+  filter: search
+
+Subject:
+    code: code
+    name: name

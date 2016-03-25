@@ -1,16 +1,15 @@
 import Subject from '/imports/model/Subject.js'
-import Griddle from 'griddle-react'
 
 import actionable from '/client/layouts/actionable/actionable.js'
+import domainModelTable from '/client/imports/components/domainModelTable/domainModelTable.js'
 import {njsx} from '/client/reactNJSX.js'
+import {FlowRouter as Router} from 'meteor/kadira:flow-router'
 
 const {__} = TAPi18n
 
-const griddle = njsx(Griddle)
-
 const SubjectIndex = ({subjects, actions}) =>
 	actionable({title: __('subjects'), actions })(
-		griddle({useGriddleStyles:true, columns:['code', 'name'], results: subjects})
+		domainModelTable({domainClass: Subject, onRowClick: (subject) => Router.go('subject.show', subject), data: subjects})
 	)()
 
 export default njsx(SubjectIndex)
