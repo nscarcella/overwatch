@@ -46,10 +46,12 @@ $logo-size: $header-height * 1.6
 			position: absolute
 			height: $logo-size - $header-height
 			width: 100%
+			padding-left: $logo-size / 2
 
 			.alert
 				padding: 0px 5px 0px $logo-size + 5px
 				height: 100%
+				width: calc(100% - #{$logo-size} / 2)
 
 	>.container
 		margin-top: $logo-size
