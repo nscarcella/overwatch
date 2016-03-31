@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "mini-signals": "^1.1.1",
     "react": "^0.14.7",
+    "react-addons-css-transition-group": "^0.14.7",
     "react-addons-pure-render-mixin": "^0.14.7",
     "react-dom": "^0.14.7",
     "reactable": "^0.12.5"
