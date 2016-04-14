@@ -1,4 +1,25 @@
-$primary-color: #33bb00;
-$secondary-color: #ffffff;
-$tertiary-color: darken($primary-color, 15%);
-$font-icon: "FontAwesome";
+$primary-color: #33bb00
+$secondary-color: #ffffff
+$tertiary-color: darken($primary-color, 15%)
+$font-icon: "FontAwesome"
+
+@mixin link
+	cursor: pointer
+	text-transform: capitalize
+	&:hover
+		color: $tertiary-color
+		text-decoration: none
+
+@mixin link-bright
+	@include link
+	color: $primary-color
+
+@mixin link-dark
+	@include link
+	color: $secondary-color
+	background-color: $primary-color
+
+@mixin round($diameter)
+	width: $diameter
+	height: $diameter
+	border-radius: $diameter

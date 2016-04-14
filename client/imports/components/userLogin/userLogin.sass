@@ -1,12 +1,14 @@
 @import "client/commons"
 
 .userLogin
-	$imageSize: 54px
+	display: inline-table
 
 	img
-		width: $imageSize
-		border-radius: $imageSize / 2
-		margin-right: 5px
+		float: left
+
 	a
-		color: $secondary-color
-		text-transform: capitalize
+		float: left
+		@include link-dark
+		text-decoration: underline
+		vertical-align: middle
+		font-size: 1.2rem

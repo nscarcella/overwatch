@@ -1,16 +1,32 @@
 @import 'commons'
 
+html
+	font-size: 62.5%
+
 *
 	box-sizing: border-box
-
-h1
+	margin: 0
+	padding: 0
+	line-height: 1.1
+	font-size: 1.5rem
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+	
+h1, h2, h3, h4, h5, h6
+	font-weight: normal
 	text-transform: capitalize
 
+h1
+	font-size: 3rem
+
+td, th
+	font-size: 1.25rem
+
+th
+	line-height: 2rem
+	outline: none
+
 a
-	cursor: pointer
-	color: $primary-color
-	&:hover
-		color: $tertiary-color
+	@include link-bright
 
 $icons: (delete: '\f014', edit: '\f044', success: '\f058', info: '\f05a', warning: '\f071', error: '\f06a', add: '\f067', openCourse: '\f067', closeCourse: '\f00d', close:'\f00d')
 

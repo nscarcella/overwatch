@@ -57,6 +57,7 @@ class AlertPanel extends Component {
 			})(
 				this.state.alerts.map(alert =>
 					div(`.alert.${alert.type}`)(
+						i(`.${alert.type}`),
 						alert.message,
 						i('.close')({onClick: () => this.closeAlert(alert)})
 					)
